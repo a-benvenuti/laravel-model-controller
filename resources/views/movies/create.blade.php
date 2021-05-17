@@ -8,7 +8,18 @@ Aggiungi un nuovo Film
 
 <div class="container">
     <h1 class="mt-2">Aggiungi un nuovo Film</h1>
-    <form>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{$error}}</li> 
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    <form action="{{route('movies.store')}}" method="POST">
+        @method('POST')
+        @csrf
         <div class="form-group mt-5">
             <label for="title">Titolo</label>
             <input type="text" class="form-control" id="title" name="title"  placeholder="Titolo">

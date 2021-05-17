@@ -36,7 +36,21 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=> 'required|string|max:100',
+            'author'=> 'required|string|max:50',
+            'genre' => 'required|string|max:50',
+            'plot' => 'required|string',
+        ]);
+        $data = $request->all();
+        $movieNew = new Movie();
+        $movieNew->title = $data['title'];
+        $movieNew->author = $data['author'];
+        $movieNew->genre = $data['genre'];
+        $movieNew->plot = $data['plot'];
+        $movieNew->save();
+
+        return redirect()->route('movies.show', $movieNew);
     }
 
     /**
