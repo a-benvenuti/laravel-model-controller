@@ -23,7 +23,7 @@ Aggiungi un nuovo Film
         </div>
         <div class="form-group">
             <label for="plot">Trama</label>
-            <input type="text-area" class="form-control" id="plot" name="plot" rows="8" placeholder="Trama...">
+            <textarea  class="form-control" id="plot" name="plot" rows="8" placeholder="Trama..."></textarea>
         </div>
         <button type="submit" class="btn btn-primary mt-2">Salva</button>
     </form>
