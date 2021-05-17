@@ -18,9 +18,9 @@
 @endsection
 
 @section('css')
-<style>
+{{-- <style>
     h1,h2,h3{margin-bottom: 30px;}
     .box{margin: 40px; line-height: 25px;}
     a{margin-left: 10px;}
-</style>
+</style> --}}
 @endsection

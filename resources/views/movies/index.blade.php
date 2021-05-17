@@ -18,7 +18,7 @@
 @endsection
 
 @section('css')
-<style>
+{{-- <style>
     h1{text-align: center;}
     h2{text-align: center;}
     .container {max-width: 762px; margin: 0 auto;}
@@ -29,5 +29,5 @@
         border: 5px double #2b2a2a;
         border-radius: 10px;
     }
-</style>
+</style> --}}
 @endsection
