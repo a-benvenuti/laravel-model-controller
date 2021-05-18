@@ -15,10 +15,10 @@
                 {{ session('message') }}
             </div>
         @endif
-        <table class="table table-striped">
-              <thead>
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                <th scope="col">Titolo</th>
+                <th scope="col" class="text-left">Titolo</th>
                 <th scope="col">Visualizza</th>
                 <th scope="col">Modifica</th>
                 <th scope="col">Elimina</th>
@@ -27,9 +27,9 @@
             <tbody>
             @foreach ($movies as $movie)
             <tr>
-                <td>{{$movie->title}}</td>
+                <td class="text-left">{{$movie->title}}</td>
                 <td><a href="{{route('movies.show', ['movie' => $movie->id])}}"><button type="button" class="btn btn-success">Visualizza</button></a></td>
-                <td><a href="{{route('movies.edit', ['movie' => $movie->id])}}"><button type="button" class="btn btn-warning text-white">Modifica</button></a></td>
+                <td><a href="{{route('movies.edit', ['movie' => $movie->id])}}"><button type="button" class="btn btn-warning">Modifica</button></a></td>
                 <td>
                     <form action="{{route('movies.destroy', [ 'movie' => $movie->id ])}}" method="POST">
 					@method('DELETE')

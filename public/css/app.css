@@ -10003,5 +10003,24 @@ h3 {
   }
 }
 body {
-  background-color: chocolate;
+  background-color: #2a2929;
+  color: white;
+}
+
+.btn {
+  color: #2a2929;
+}
+
+.btn-warning:hover {
+  color: white !important;
+}
+
+table th, table td {
+  text-align: center;
+}
+table th {
+  color: #387eb8;
+}
+table td {
+  color: white;
 }
