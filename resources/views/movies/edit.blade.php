@@ -8,7 +8,7 @@ Modifica {{$movie->title}}
 @section('main')
 
 <div class="container">
-    <h1 class="mt-2">Aggiungi un nuovo Film</h1>
+    <h1 class="mt-2">Modifica {{$movie->title}}</h1>
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
