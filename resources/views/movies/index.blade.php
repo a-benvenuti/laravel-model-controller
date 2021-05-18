@@ -17,7 +17,7 @@
                 <th scope="col">Titolo</th>
                 <th scope="col">Regista</th>
                 <th scope="col">Generi</th>
-                <th scope="col">visualizza</th>
+                <th scope="col">Visualizza</th>
                 <th scope="col">Modifica</th>
                 <th scope="col">Elimina</th>
                 </tr>
