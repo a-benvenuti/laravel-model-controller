@@ -17,7 +17,9 @@
                 <th scope="col">Titolo</th>
                 <th scope="col">Regista</th>
                 <th scope="col">Generi</th>
-                <th scope="col">Azioni</th>
+                <th scope="col">visualizza</th>
+                <th scope="col">Modifica</th>
+                <th scope="col">Elimina</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +29,8 @@
                 <td>{{$movie->author}}</td>
                 <td>{{$movie->genre}}</td>
                 <td><a href="{{route('movies.show', ['movie' => $movie->id])}}">Visualizza</a></td>
+                <td><a href="{{route('movies.edit', ['movie' => $movie->id])}}">Modifica</a></td>
+                <td><a href="">Elimina</a></td>
             </tr>                        
             @endforeach
             </tbody>
