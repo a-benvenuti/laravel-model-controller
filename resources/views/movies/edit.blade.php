@@ -23,19 +23,19 @@ Modifica {{$movie->title}}
         @csrf
         <div class="form-group mt-5">
             <label for="title">Titolo</label>
-            <input type="text" class="form-control" id="title" name="title"  placeholder="Titolo" value="{{$movie->title}}">
+            <input type="text" class="form-control" id="title" name="title"  placeholder="Titolo" value="{{old('title') ? old('title') : $movie->title}}">
         </div>
         <div class="form-group">
             <label for="author">Regista</label>
-            <input type="text" class="form-control" id="author" name="author"  placeholder="Regista" value="{{$movie->author}}">
-        </div>
+            <input type="text" class="form-control" id="author" name="author"  placeholder="Regista" value="{{old('author') ? old('author') : $movie->author}}">
+        </divgenre
         <div class="form-group">
             <label for="genre">Generi</label>
-            <input type="text" class="form-control" id="genre" name="genre"  placeholder="Generi" value="{{$movie->genre}}">
+            <input type="text" class="form-control" id="genre" name="genre"  placeholder="Generi" value="{{old('genre') ? old('genre') : $movie->genre}}">
         </div>
         <div class="form-group">
             <label for="plot">Trama</label>
-            <textarea  class="form-control" id="plot" name="plot" rows="8" placeholder="Trama...">{{$movie->plot}}</textarea>
+            <textarea  class="form-control" id="plot" name="plot" rows="8" placeholder="Trama...">{{old('plot') ? old('plot') : $movie->plot}}</textarea>
         </div>
         <button type="submit" class="btn btn-primary mt-2">Salva</button>
     </form>
