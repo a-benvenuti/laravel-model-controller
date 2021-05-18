@@ -8,6 +8,19 @@ use App\Movie;
 class MovieController extends Controller
 {
     /**
+     * Validazione 
+     */
+    protected $requestValidation = [
+        'title' => 'required|string|max:100',
+        'author' => 'required|string|max:50',
+        'genre' => 'required|string|max:50',
+        'plot' => 'required|string',
+    ];
+
+
+
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -17,6 +30,9 @@ class MovieController extends Controller
         $movies = Movie::all();
         return view('movies.index', ['movies' => $movies]);
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -28,6 +44,9 @@ class MovieController extends Controller
         return view('movies.create');
     }
 
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,13 +55,14 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'=> 'required|string|max:100',
-            'author'=> 'required|string|max:50',
-            'genre' => 'required|string|max:50',
-            'plot' => 'required|string',
-        ]);
+        $request->validate($this->requestValidation);
         $data = $request->all();
+        /**
+         * Oppure 
+         * $movieNew = Movie::create($data);
+         * solo se il name dei campi input del mio create.blade.php
+         * sono uguali alle "colonne" del mio DB
+         */
         $movieNew = new Movie();
         $movieNew->title = $data['title'];
         $movieNew->author = $data['author'];
@@ -50,8 +70,11 @@ class MovieController extends Controller
         $movieNew->plot = $data['plot'];
         $movieNew->save();
 
-        return redirect()->route('movies.show', $movieNew);
+        return redirect()->route('movies.index', $movieNew)->with('message', 'Il film ' . $movieNew->title . ' è stato aggiunto');
     }
+
+
+
 
     /**
      * Display the specified resource.
@@ -65,6 +88,9 @@ class MovieController extends Controller
         return view('movies.show', ['movie' => $movie]);
     }
 
+
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -76,6 +102,9 @@ class MovieController extends Controller
         return view('movies.edit',['movie' => $movie]);
     }
 
+
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -85,16 +114,14 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        $request->validate([
-            'title' => 'required|string|max:100',
-            'author' => 'required|string|max:50',
-            'genre' => 'required|string|max:50',
-            'plot' => 'required|string',
-        ]);
+        $request->validate($this->requestValidation);
         $movie->update($request->all());
         return redirect()->route('movies.show', $movie);
     }
 
+
+
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -104,6 +131,6 @@ class MovieController extends Controller
     public function destroy(Movie $movie)
     {
         $movie->delete();
-        return redirect()->route('movies.index');
+        return redirect()->route('movies.index')->with('message', 'Il film è stato eliminato');
     }
 }
