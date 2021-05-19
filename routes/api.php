@@ -18,4 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/movies', 'Api\MovieController@index');
+Route::namespace('Api')->group(function () {
+    Route::get('/movies', 'MovieController@index');
+    Route::get('/movies/{movie}', 'MovieController@show');
+});
+

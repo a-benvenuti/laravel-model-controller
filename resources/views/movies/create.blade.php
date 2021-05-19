@@ -20,6 +20,10 @@ Aggiungi un nuovo Film
     <form action="{{route('movies.store')}}" method="POST">
         @method('POST')
         @csrf
+        <div class="form-group">
+			<label for="cover_image">Immagine Cover</label>
+			<input type="text" class="form-control" id="cover_image" name="cover_image" placeholder="URL Immagine" value="{{ old('cover_image') }}">
+		</div>
         <div class="form-group mt-5">
             <label for="title">Titolo</label>
             <input type="text" class="form-control" id="title" name="title"  placeholder="Titolo" value="{{ old('title') }}">
@@ -36,6 +40,14 @@ Aggiungi un nuovo Film
             <label for="plot">Trama</label>
             <textarea  class="form-control" id="plot" name="plot" rows="8" placeholder="Trama...">{{ old('plot') }}</textarea>
         </div>
+        <div class="form-group">
+			<label for="year">Anno</label>
+			<select class="form-control" id="year" name="year">
+				@for ($i = 1900; $i <= date("Y"); $i++)
+					<option value="{{$i}}" {{ $i == old('year') ? 'selected' : '' }}>{{$i}}</option>
+				@endfor
+			</select>
+		</div>
         <button type="submit" class="btn btn-primary mt-2">Salva</button>
     </form>
 </div>

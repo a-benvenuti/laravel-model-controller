@@ -10,12 +10,20 @@ class MovieController extends Controller
     /**
      * Validazione 
      */
-    protected $requestValidation = [
-        'title' => 'required|string|max:100',
-        'author' => 'required|string|max:50',
-        'genre' => 'required|string|max:50',
-        'plot' => 'required|string',
-    ];
+    protected $requestValidation = [];
+
+    public function __construct()
+    {
+        $year = date("Y");
+
+        $this->requestValidation = [
+            'title' => 'required|string|max:100',
+            'author' => 'required|string|max:50',
+            'genre' => 'required|string|max:50',
+            'plot' => 'required|string',
+            'year' => 'required|numeric|min:1900|max:' . $year
+        ];
+    }
 
 
 
@@ -55,6 +63,11 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+
+        if ($data['cover_image'] === NULL) {
+            unset($data['cover_image']);
+        }
         $request->validate($this->requestValidation);
         $data = $request->all();
         /**
@@ -68,6 +81,10 @@ class MovieController extends Controller
         $movieNew->author = $data['author'];
         $movieNew->genre = $data['genre'];
         $movieNew->plot = $data['plot'];
+        $movieNew->year = $data['year'];
+        if( !empty($data['cover_image']) ) {
+             $movieNew->cover_image = $data['cover_image'];
+        }
         $movieNew->save();
 
         return redirect()->route('movies.index', $movieNew)->with('message', 'Il film ' . $movieNew->title . ' è stato aggiunto');
@@ -114,6 +131,11 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+        $data = $request->all();
+
+        if ($data['cover_image'] === NULL) {
+            unset($data['cover_image']);
+        }
         $request->validate($this->requestValidation);
         $movie->update($request->all());
         return redirect()->route('movies.show', $movie);
